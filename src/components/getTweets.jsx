@@ -1,0 +1,55 @@
+import React, { Component } from "react";
+import axios from "axios";
+const apiEndPoint = "https://jsonplaceholder.typicode.com/posts";
+class TweetsApp extends Component {
+  state = {
+    tweets: [],
+  };
+  async componentDidMount() {
+    const { data: tweets } = await axios.get(apiEndPoint);
+    this.setState({ tweets });
+  }
+  handleDelete = async (tweet) => {
+    const orignalTweets = this.state.tweets;
+    const tweets = this.state.tweets.filter((t) => t.id !== tweet.id);
+    this.setState({ tweets });
+    try {
+      await axios.delete(apiEndPoint + "/" + tweet.id);
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        alert("Not Found");
+        this.setState({ tweets: orignalTweets });
+      }
+    }
+  };
+  render() {
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Tweet</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.tweets.map((tweet) => (
+            <tr key={tweet.id}>
+              <td>{tweet.title}</td>
+
+              <td>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => this.handleDelete(tweet)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+}
+
+export default TweetsApp;
