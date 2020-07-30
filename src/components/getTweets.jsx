@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+// import Like from "./common/like";
 const apiEndPoint = "https://jsonplaceholder.typicode.com/posts";
 class TweetsApp extends Component {
   state = {
@@ -28,6 +29,7 @@ class TweetsApp extends Component {
         <thead>
           <tr>
             <th>Tweet</th>
+
             <th>Delete</th>
           </tr>
         </thead>
