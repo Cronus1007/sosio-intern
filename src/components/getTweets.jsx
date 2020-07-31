@@ -3,21 +3,21 @@ import axios from "axios";
 // import Like from "./common/like";
 const apiEndPoint = "https://jsonplaceholder.typicode.com/posts";
 class TweetsApp extends Component {
-  state = {
-    tweets: [],
-  };
-  async componentDidMount() {
-    let { data: tweets } = await axios.get(apiEndPoint);
-    for (let keys of tweets) {
-      const liked = false;
-      keys = { liked, ...keys };
-    }
-    console.log(tweets);
-    this.setState({ tweets });
-  }
+  // state = {
+  //   tweets: [],
+  // };
+  // async componentDidMount() {
+  //   let { data: tweets } = await axios.get(apiEndPoint);
+  //   for (let keys of tweets) {
+  //     const liked = false;
+  //     keys = { liked, ...keys };
+  //   }
+  //   console.log(tweets);
+  //   this.setState({ tweets });
+  // }
   handleDelete = async (tweet) => {
-    const orignalTweets = this.state.tweets;
-    const tweets = this.state.tweets.filter((t) => t.id !== tweet.id);
+    const orignalTweets = this.props.tweets;
+    const tweets = this.props.tweets.filter((t) => t.id !== tweet.id);
     this.setState({ tweets });
     try {
       await axios.delete(apiEndPoint + "/" + tweet.id);
@@ -29,6 +29,7 @@ class TweetsApp extends Component {
     }
   };
   render() {
+    const { tweets } = this.props;
     return (
       <table className="table">
         <thead>
@@ -39,7 +40,7 @@ class TweetsApp extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.tweets.map((tweet) => (
+          {tweets.map((tweet) => (
             <tr key={tweet.id}>
               <td>{tweet.title}</td>
 

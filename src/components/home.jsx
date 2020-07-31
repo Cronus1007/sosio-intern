@@ -2,11 +2,23 @@ import React, { Component } from "react";
 import User from "./common/user";
 import TweetButton from "./button";
 import Tweets from "./tweets";
+import axios from "axios";
+// import Like from "./common/like";
+const apiEndPoint = "https://jsonplaceholder.typicode.com/posts";
 class Home extends Component {
   state = {
     clicked: false,
     data: { value: "" },
+    tweets: [],
   };
+  async componentDidMount() {
+    let { data: tweets } = await axios.get(apiEndPoint);
+    for (let keys of tweets) {
+      const liked = false;
+      keys = { liked, ...keys };
+    }
+    this.setState({ tweets });
+  }
   handleClick = () => {
     console.log("Input render");
     if (this.state.clicked) {
@@ -18,7 +30,8 @@ class Home extends Component {
     }
   };
   handleSave = () => {
-    console.log(this.state.data.value);
+    if (this.state.data.value === "") console.log("Empty String");
+    console.log(this.state.tweets);
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +58,7 @@ class Home extends Component {
           />
         </div>
         <hr className="line" />
-        <Tweets />
+        <Tweets tweets={this.state.tweets} />
       </div>
     );
   }

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import TweetsApp from "./getTweets";
 class Tweets extends Component {
   render() {
-    return <TweetsApp />;
+    const { tweets } = this.props;
+    return <TweetsApp tweets={tweets} />;
   }
 }
 
