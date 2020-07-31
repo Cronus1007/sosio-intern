@@ -19,6 +19,7 @@ class TweetsApp extends Component {
     const orignalTweets = this.props.tweets;
     const tweets = this.props.tweets.filter((t) => t.id !== tweet.id);
     this.setState({ tweets });
+
     try {
       await axios.delete(apiEndPoint + "/" + tweet.id);
     } catch (error) {

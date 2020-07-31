@@ -4,6 +4,8 @@ import TweetButton from "./button";
 import Tweets from "./tweets";
 import axios from "axios";
 // import Like from "./common/like";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const apiEndPoint = "https://jsonplaceholder.typicode.com/posts";
 class Home extends Component {
   state = {
@@ -30,8 +32,18 @@ class Home extends Component {
     }
   };
   handleSave = () => {
-    if (this.state.data.value === "") console.log("Empty String");
+    const value = this.state.data.value;
+    if (value === "") return toast.error("Invalid");
     console.log(this.state.tweets);
+    const obj = {
+      body:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      userId: 1,
+      title: value,
+    };
+    const tweets = this.state.tweets;
+    this.setState({ tweets });
+    toast.success("Successfull");
   };
   handleSubmit = (e) => {
     e.preventDefault();

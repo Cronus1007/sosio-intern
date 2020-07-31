@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
 class Input extends Component {
   render() {
     const { onSave, onSubmit, onChange } = this.props;
@@ -9,6 +10,7 @@ class Input extends Component {
         <button className="btn btn-primary button" onClick={onSave}>
           Save
         </button>
+        <ToastContainer />
       </form>
     );
   }
