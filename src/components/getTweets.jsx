@@ -7,7 +7,12 @@ class TweetsApp extends Component {
     tweets: [],
   };
   async componentDidMount() {
-    const { data: tweets } = await axios.get(apiEndPoint);
+    let { data: tweets } = await axios.get(apiEndPoint);
+    for (let keys of tweets) {
+      const liked = false;
+      keys = { liked, ...keys };
+    }
+    console.log(tweets);
     this.setState({ tweets });
   }
   handleDelete = async (tweet) => {
