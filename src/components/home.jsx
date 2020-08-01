@@ -31,19 +31,32 @@ class Home extends Component {
       return this.state.clicked;
     }
   };
+
   handleSave = () => {
-    const value = this.state.data.value;
-    if (value === "") return toast.error("Invalid");
-    console.log(this.state.tweets);
-    const obj = {
-      body:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-      userId: 1,
-      title: value,
+    setTimeout(() => {
+      console.log("Saved");
+      const value = this.state.data.value;
+      if (value === "") return toast.error("Invalid");
+      const obj = {
+        body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+        userId: 1,
+        title: value,
+      };
+      const newTweets = this.state.tweets.unshift(obj);
+      const tweets = this.state.tweets;
+      this.setState({ tweets });
+      toast.success("Successful");
+    }, 5000);
+  };
+  handleSaveAsync = () => {
+    console.log("Clicked");
+    return (dispatchEvent) => {
+      setTimeout(() => {
+        console.log("entered");
+        dispatchEvent(this.handleSave());
+      }, 5000);
     };
-    const tweets = this.state.tweets;
-    this.setState({ tweets });
-    toast.success("Successfull");
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -55,6 +68,9 @@ class Home extends Component {
     this.setState({ data });
   };
   render() {
+    const tweets = this.state.tweets;
+    console.log(tweets);
+
     return (
       <div className="col-lg-11 border ">
         {/* <h1>Sosio</h1> */}
@@ -70,7 +86,7 @@ class Home extends Component {
           />
         </div>
         <hr className="line" />
-        <Tweets tweets={this.state.tweets} />
+        <Tweets tweets={tweets} />
       </div>
     );
   }

@@ -31,6 +31,7 @@ class TweetsApp extends Component {
   };
   render() {
     const { tweets } = this.props;
+    console.log(tweets);
     return (
       <table className="table">
         <thead>
