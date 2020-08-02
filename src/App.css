@@ -84,3 +84,42 @@
 .button {
     margin-left: 10px;
 }
+
+.p {
+    font-weight: 200;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.span {
+    display: inline;
+}
+
+.mr-17 {
+    margin-right: 17%;
+}
+
+.img {
+    width: 250px;
+    height: 150px;
+}
+
+.bridge {
+    margin-left: 15%;
+}
+
+#para {
+    text-align: end;
+}
+
+.mr-15 {
+    margin-right: 15%;
+}
+
+.mr-13 {
+    margin-right: 13%;
+}
+
+.mr-19 {
+    margin-right: 19%;
+}

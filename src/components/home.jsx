@@ -5,6 +5,7 @@ import Tweets from "./tweets";
 import axios from "axios";
 // import Like from "./common/like";
 import { ToastContainer, toast } from "react-toastify";
+import StaticComponent from "./static";
 import "react-toastify/dist/ReactToastify.css";
 const apiEndPoint = "https://jsonplaceholder.typicode.com/posts";
 class Home extends Component {
@@ -86,6 +87,7 @@ class Home extends Component {
           />
         </div>
         <hr className="line" />
+        <StaticComponent />
         <Tweets tweets={tweets} />
       </div>
     );

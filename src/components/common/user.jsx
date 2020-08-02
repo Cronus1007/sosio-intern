@@ -7,7 +7,11 @@ class User extends Component {
       <div className="h1 left ">
         <AccountCircleSharpIcon color="primary" className="size" />
         <br />
-        <button className="btn btn-outline-primary top">Check My Bio</button>
+        <p className="p">
+          {" "}
+          User Bio Lorem ipsum User Bio Lorem ipsum User Bio Lorem ipsum User
+          Bio Lorem ipsum
+        </p>
       </div>
     );
   }
